@@ -12,6 +12,8 @@ import {
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { useContext } from "react";
+import { ClientContext } from "../../contexts/ClientContext";
 
 interface IClientRegister {
   fullName: string;
@@ -20,6 +22,8 @@ interface IClientRegister {
 }
 
 export const ClientForm = () => {
+  const { registerClient } = useContext(ClientContext);
+
   const registerSchema = yup.object().shape({
     fullName: yup.string().required("Campo Obrigatório"),
     email: yup.string().required("Campo Obrigatório"),
@@ -35,14 +39,19 @@ export const ClientForm = () => {
   });
 
   const handleRegister = (data: IClientRegister) => {
-    console.log(data);
+    registerClient(data);
   };
 
   return (
-    <Flex width="100%" justifyContent="center" alignItems='center'>
-      <Box as="form" w="100%" onSubmit={handleSubmit(handleRegister)}  maxWidth='700px'>
+    <Flex width="100%" justifyContent="center" alignItems="center">
+      <Box
+        as="form"
+        w="100%"
+        onSubmit={handleSubmit(handleRegister)}
+        maxWidth="700px"
+      >
         <Heading color="orange.800" textAlign="center">
-          Cliente
+          Cadastrar Cliente
         </Heading>
         <VStack spacing="5" mt="5">
           <Box width="80%">

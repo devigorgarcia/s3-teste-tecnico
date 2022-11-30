@@ -1,9 +1,10 @@
-import { Box, Button, Flex, Heading } from "@chakra-ui/react";
+import { Box, Button, Divider, Flex, Heading } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { useState } from "react";
 
 import { ClientForm } from "../../components/ClientForm";
 import { ContactForm } from "../../components/ContactForm";
+import { DisplayContacts } from "../../components/DisplayContacts";
 
 export const HomePage = () => {
   const [toggle, setToggle] = useState(false);
@@ -15,6 +16,7 @@ export const HomePage = () => {
         <Button onClick={() => setToggle(true)}>Contato</Button>
         <Button onClick={() => setToggle(false)}>Cliente</Button>
       </Flex>
+
       <Flex width="100%" h="600px">
         {toggle ? (
           <>
@@ -40,6 +42,7 @@ export const HomePage = () => {
           </>
         )}
       </Flex>
+      <DisplayContacts />
     </Flex>
   );
 };

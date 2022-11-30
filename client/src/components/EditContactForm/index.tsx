@@ -3,7 +3,6 @@ import {
   Button,
   Flex,
   FormLabel,
-  Heading,
   Input,
   Select,
   Text,
@@ -13,37 +12,42 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useContext } from "react";
-import { ClientContext } from "../../contexts/ClientContext";
+import { ClientContext, IContact } from "../../contexts/ClientContext";
 import { ContactContext } from "../../contexts/ContactContext";
 
-interface IClientRegister {
-  fullName: string;
-  email: string;
-  phone: string;
-  clientId: string;
+export interface IContactEdit {
+  fullName?: string;
+  email?: string;
+  phone?: string;
+  clientId?: string;
 }
 
-export const ContactForm = () => {
-  const { clientsList } = useContext(ClientContext);
-  const { registerContact } = useContext(ContactContext);
+interface IContactEditForm {
+  contact: IContact;
+}
+
+export const ContactEditForm = ({ contact }: IContactEditForm) => {
+  const { clientsList, clientDetail } = useContext(ClientContext);
+  const { editContact } = useContext(ContactContext);
 
   const registerSchema = yup.object().shape({
-    fullName: yup.string().required("Campo Obrigatório"),
-    email: yup.string().required("Campo Obrigatório"),
-    phone: yup.string().required("Campo Obrigatório"),
-    clientId: yup.string().required("Campo Obrigatório"),
+    fullName: yup.string(),
+    email: yup.string(),
+    phone: yup.string(),
+    clientId: yup.string(),
   });
 
   const {
     formState: { errors },
     register,
     handleSubmit,
-  } = useForm<IClientRegister>({
+  } = useForm<IContactEdit>({
     resolver: yupResolver(registerSchema),
   });
 
-  const handleRegister = (data: IClientRegister) => {
-    registerContact(data);
+  const handleEdit = (data: IContactEdit) => {
+    editContact(data, contact.id);
+    clientDetail(contact.clientId);
   };
 
   return (
@@ -51,12 +55,9 @@ export const ContactForm = () => {
       <Box
         as="form"
         w="100%"
-        onSubmit={handleSubmit(handleRegister)}
+        onSubmit={handleSubmit(handleEdit)}
         maxWidth="700px"
       >
-        <Heading color="orange.800" textAlign="center">
-          Cadastrar Contato
-        </Heading>
         <VStack spacing="5" mt="5">
           <Box width="80%">
             <FormLabel color="orange.800">Nome Completo</FormLabel>
@@ -64,6 +65,7 @@ export const ContactForm = () => {
               width="100%"
               placeholder="Nome completo"
               variant="filled"
+              defaultValue={contact.fullName}
               {...register("fullName")}
             />
             {errors && <Text color="red">{errors.fullName?.message}</Text>}
@@ -75,6 +77,7 @@ export const ContactForm = () => {
               width="100%"
               placeholder="Email"
               variant="filled"
+              defaultValue={contact.email}
               {...register("email")}
             />
             {errors.email ? (
@@ -89,13 +92,19 @@ export const ContactForm = () => {
               width="100%"
               placeholder="11111111111"
               variant="filled"
+              defaultValue={contact.phone}
               {...register("phone")}
             />
             {errors && <Text color="red">{errors.phone?.message}</Text>}
           </Box>
           <Box width="80%">
             <FormLabel color="orange.800">Cliente</FormLabel>
-            <Select width="100%" variant="filled" {...register("clientId")}>
+            <Select
+              defaultValue={contact.clientId}
+              width="100%"
+              variant="filled"
+              {...register("clientId")}
+            >
               <>
                 <option value="">Selecione um Cliente</option>
                 {clientsList?.map((client) => {
@@ -112,7 +121,7 @@ export const ContactForm = () => {
         </VStack>
         <Flex alignItems="center" justifyContent="center">
           <Button type="submit" mt={6} colorScheme="orange">
-            Cadastrar
+            Editar
           </Button>
         </Flex>
       </Box>
