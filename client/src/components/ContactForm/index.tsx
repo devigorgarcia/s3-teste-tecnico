@@ -42,21 +42,20 @@ export const ContactForm = () => {
     resolver: yupResolver(registerSchema),
   });
 
-  useEffect(()=>{
-    
-  })
+  useEffect(() => {});
 
   const handleRegister = (data: IClientRegister) => {
     registerContact(data);
   };
 
   return (
-    <Flex width="100%" justifyContent="center" alignItems="center">
+    <Flex width="100%" justifyContent="center" alignItems={"center"}>
       <Box
         as="form"
         w="100%"
         onSubmit={handleSubmit(handleRegister)}
         maxWidth="700px"
+        alignSelf={["flex-start", "center"]}
       >
         <Heading color="orange.800" textAlign="center">
           Cadastrar Contato
