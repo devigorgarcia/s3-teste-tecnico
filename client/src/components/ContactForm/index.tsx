@@ -12,7 +12,7 @@ import {
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { ClientContext } from "../../contexts/ClientContext";
 import { ContactContext } from "../../contexts/ContactContext";
 
@@ -41,6 +41,10 @@ export const ContactForm = () => {
   } = useForm<IClientRegister>({
     resolver: yupResolver(registerSchema),
   });
+
+  useEffect(()=>{
+    
+  })
 
   const handleRegister = (data: IClientRegister) => {
     registerContact(data);
@@ -87,7 +91,7 @@ export const ContactForm = () => {
             <FormLabel color="orange.800">Telefone</FormLabel>
             <Input
               width="100%"
-              placeholder="11111111111"
+              placeholder="(11)998745632"
               variant="filled"
               {...register("phone")}
             />

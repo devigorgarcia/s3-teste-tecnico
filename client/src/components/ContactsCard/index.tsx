@@ -1,4 +1,4 @@
-import { Td, Tr, useDisclosure } from "@chakra-ui/react";
+import { Button, Td, Tr, useDisclosure } from "@chakra-ui/react";
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import { IContact } from "../../contexts/ClientContext";
 import { EditContactModal } from "../EditContactModal";
@@ -26,11 +26,13 @@ export const ContactCad = ({ contact }: IContactCard) => {
         <Td textAlign="center">{contact.fullName}</Td>
         <Td textAlign="center">{contact.email}</Td>
         <Td textAlign="center">{contact.phone}</Td>
-        <Td textAlign="center" cursor="pointer" onClick={editOnOpen}>
-          <AiFillEdit />
-        </Td>
-        <Td textAlign="center" cursor="pointer" onClick={deleteOnOpen}>
-          <AiFillDelete />
+        <Td textAlign="center" display="flex" flexDir={["column", "row"]} align='center' justifyContent='center'>
+          <Button onClick={editOnOpen}>
+            <AiFillEdit size="25px" />
+          </Button>
+          <Button onClick={deleteOnOpen}>
+            <AiFillDelete size="25px" />
+          </Button>
         </Td>
       </Tr>
       <EditContactModal

@@ -24,9 +24,10 @@ export interface IContactEdit {
 
 interface IContactEditForm {
   contact: IContact;
+  onClose: () => void;
 }
 
-export const ContactEditForm = ({ contact }: IContactEditForm) => {
+export const ContactEditForm = ({ contact, onClose }: IContactEditForm) => {
   const { clientsList, clientDetail } = useContext(ClientContext);
   const { editContact } = useContext(ContactContext);
 
@@ -48,6 +49,7 @@ export const ContactEditForm = ({ contact }: IContactEditForm) => {
   const handleEdit = (data: IContactEdit) => {
     editContact(data, contact.id);
     clientDetail(contact.clientId);
+    onClose();
   };
 
   return (
