@@ -1,13 +1,23 @@
-export type createClientDTO = {
-  id?: string;
-  fullName: string;
-  email: string;
-  phone: string;
-  createdAT: string;
-};
+import { ApiProperty } from '@nestjs/swagger';
 
-export type updateClientDTO = {
+export class createClientDTO {
+  @ApiProperty()
+  id?: string;
+  @ApiProperty()
+  fullName: string;
+  @ApiProperty()
+  email: string;
+  @ApiProperty()
+  phone: string;
+  @ApiProperty()
+  createdAT: string;
+}
+
+export class updateClientDTO {
+  @ApiProperty()
   fullName?: string;
+  @ApiProperty()
   email?: string;
+  @ApiProperty()
   phone?: string;
-};
+}
