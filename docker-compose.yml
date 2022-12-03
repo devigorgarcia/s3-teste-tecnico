@@ -1,0 +1,41 @@
+version: "3.8"
+services:
+  api:
+    stdin_open: true
+    container_name: api
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    depends_on:
+      - postgres
+    env_file:
+      - ./backend/.env
+    restart: always
+
+      
+  client:
+    stdin_open: true
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - 5173:5173
+
+  postgres:
+    image: postgres:14
+    container_name: postgres
+    restart: always
+    ports:
+      - 5433:5432
+    environment:
+      - POSTGRES_USER=igorg
+      - POSTGRES_PASSWORD=123456
+      - POSTGRES_DB=s3_client_contact_db
+    volumes:
+      - postgres:/var/lib/postgresql/data
+
+volumes:
+  postgres:
+    name: s3_client_contact_db

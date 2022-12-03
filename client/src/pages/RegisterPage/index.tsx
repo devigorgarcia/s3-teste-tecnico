@@ -10,6 +10,7 @@ export const RegisterPage = () => {
   const [toggle, setToggle] = useState(false);
   const [showContact, setShowContact] = useState(false);
   const MotionFlex = motion(Flex);
+  console.log(showContact);
   return (
     <>
       {showContact ? (
@@ -20,6 +21,13 @@ export const RegisterPage = () => {
           <Flex align="center" justifyContent="center" gap={5}>
             <Button onClick={() => setToggle(true)}>Contato</Button>
             <Button onClick={() => setToggle(false)}>Cliente</Button>
+          </Flex >
+          <Flex align='center' justifyContent='center'>
+            {!showContact && (
+              <Button colorScheme="orange" onClick={() => setShowContact(true)}>
+                Mostrar Contatos
+              </Button>
+            )}
           </Flex>
 
           <Flex width="100%" h="600px">
@@ -31,7 +39,11 @@ export const RegisterPage = () => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ default: { ease: "linear" } }}
                 >
-                  <Box bg="orange.600" w="50vw"></Box>
+                  <Box
+                    display={["none", "flex"]}
+                    bg="orange.600"
+                    w="50vw"
+                  ></Box>
                 </MotionFlex>
               </>
             ) : (
@@ -41,7 +53,11 @@ export const RegisterPage = () => {
                   initial={{ opacity: 0, x: "1000px" }}
                   animate={{ opacity: 1, x: 0 }}
                 >
-                  <Box bg="orange.600" w="50vw"></Box>
+                  <Box
+                    display={["none", "flex"]}
+                    bg="orange.600"
+                    w="50vw"
+                  ></Box>
                 </MotionFlex>
                 <ClientForm />
               </>
@@ -49,14 +65,10 @@ export const RegisterPage = () => {
           </Flex>
         </Flex>
       )}
-      <Flex align="center" justifyContent="center" mt="10">
-        {showContact ? (
+      <Flex align="center" justifyContent="center" mt="3">
+        {showContact && (
           <Button colorScheme="orange" onClick={() => setShowContact(false)}>
             Voltar
-          </Button>
-        ) : (
-          <Button colorScheme="orange" onClick={() => setShowContact(true)}>
-            Mostrar Contatos
           </Button>
         )}
       </Flex>

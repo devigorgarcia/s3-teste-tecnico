@@ -48,6 +48,7 @@ export const ClientForm = () => {
         w="100%"
         onSubmit={handleSubmit(handleRegister)}
         maxWidth="700px"
+        alignSelf={["flex-start", "center"]}
       >
         <Heading color="orange.800" textAlign="center">
           Cadastrar Cliente
