@@ -1,15 +1,27 @@
-export type createContactDTO = {
-  id?: string;
-  fullName: string;
-  email: string;
-  phone: string;
-  clientId: string;
-};
+import { ApiProperty } from '@nestjs/swagger';
 
-export type updateContactDTO = {
+export class createContactDTO {
+  @ApiProperty()
   id?: string;
+  @ApiProperty()
+  fullName: string;
+  @ApiProperty()
+  email: string;
+  @ApiProperty()
+  phone: string;
+  @ApiProperty()
+  clientId: string;
+}
+
+export class updateContactDTO {
+  @ApiProperty()
+  id?: string;
+  @ApiProperty()
   fullName?: string;
+  @ApiProperty()
   email?: string;
+  @ApiProperty()
   phone?: string;
+  @ApiProperty()
   clientId?: string;
-};
+}
