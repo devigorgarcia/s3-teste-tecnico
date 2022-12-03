@@ -53,7 +53,7 @@ Após a inicialização do docker, em um outro terminal, realize a migration
 Para Acessar a aplicação, coloque em seu navegador
 
 ```http
-http://localhost:5173
+  http://localhost:5173
 ```
 
 
