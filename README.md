@@ -38,8 +38,8 @@ Acesse a pasta
 ```
 
 Crie .env de acordo com exemplo do .env.example
-Substituir onde tem o postgres_user pelo seu usuario no postgres
-Substituir ond e tem postgres_password pela sua senha do postgres
+- Substituir onde tem o postgres_user pelo seu usuario no postgres
+- Substituir ond e tem postgres_password pela sua senha do postgres
 ```
   DATABASE_URL="postgresql://postgres_user:postges_password@postgres:5432/s3_client_contact_db" 
 ```
