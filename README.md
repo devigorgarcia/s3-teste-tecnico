@@ -26,6 +26,8 @@ Este teste consiste em criar um pequeno cadastro de clientes com vínculo de con
 - Docker Desktop
 ## Instalação
 
+Abra o Docker Desktop
+
 Clone o repositório
 
 ```bash
@@ -47,6 +49,8 @@ Crie uma arquivo .env e digite o codigo abaixo fazendo a substituição
 ```
   DATABASE_URL="postgresql://postgres_user:postges_password@postgres:5432/s3_client_contact_db" 
 ```
+
+
 Volte a raiz do projeto
 ```
  cd ..
