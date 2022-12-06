@@ -23,7 +23,7 @@ Este teste consiste em criar um pequeno cadastro de clientes com vínculo de con
 
 ## Requisitos
 
-- Docker
+- Docker Desktop
 ## Instalação
 
 Clone o repositório
