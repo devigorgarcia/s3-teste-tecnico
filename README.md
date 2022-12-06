@@ -37,14 +37,22 @@ Acesse a pasta
   cd s3-teste-tecnico
 ```
 
-Crie .env de acordo com exemplo do .env.example
+Acesse a pasta backend
+```bash
+cd backend
+```
+Crie uma arquivo .env e digite o codigo abaixo fazendo a substituição
 - Substituir onde tem o postgres_user pelo seu usuario no postgres
 - Substituir ond e tem postgres_password pela sua senha do postgres
 ```
   DATABASE_URL="postgresql://postgres_user:postges_password@postgres:5432/s3_client_contact_db" 
 ```
+Volte a raiz do projeto
+```
+ cd ..
+```
 
-Abra o terminal dentro da pasta e rode o comando
+e dentro da pasta,  rode o comando
 ```bash
   docker-compose up --build
 ```
